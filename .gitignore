@@ -1,0 +1,13 @@
+# Alles wordt genegeerd; alleen wat hieronder expliciet is toegelaten gaat mee.
+#
+# Deze map bevat persoonsgegevens: de Eneco-jaarnota staat op naam met adres,
+# klantnummer, notanummer en EAN-code. Door standaard alles uit te sluiten kan
+# dat ook met `git add -A` of `git add .` niet per ongeluk in de repository
+# terechtkomen. Wil je een bestand toevoegen, zet het hier dan expliciet bij.
+
+*
+
+!.gitignore
+!README.md
+!index.html
+!installatie-doorn.html

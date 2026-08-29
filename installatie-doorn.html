@@ -1,0 +1,1070 @@
+<title>Propaan of stroom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Chivo+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+
+<style>
+:root{
+  --paper:#F5F7F8;
+  --surface:#FFFFFF;
+  --sunk:#EDF1F3;
+  --ink:#16202B;
+  --ink-2:#3C4E5C;
+  --muted:#647A89;
+  --faint:#93A6B2;
+  --rule:#D5DEE3;
+  --rule-soft:#E4EAEE;
+
+  --gas:#A8451B;
+  --gas-soft:#F2E2D9;
+  --elek:#1D6E8E;
+  --elek-soft:#DCEAF0;
+  --indigo:#4A5D9E;
+  --indigo-soft:#E0E4F2;
+  --hybride:#7D4A63;
+  --hybride2:#3D7A5E;
+  --flag:#8A6B1B;
+
+  --shadow:0 1px 2px rgba(22,32,43,.05), 0 8px 24px -12px rgba(22,32,43,.18);
+
+  --display:"Bricolage Grotesque","Segoe UI",sans-serif;
+  --prose:"Newsreader",Georgia,serif;
+  --fig:"Newsreader",Georgia,serif;
+  --mono:"Chivo Mono",ui-monospace,Consolas,monospace;
+
+  --max:1180px;
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121A20;
+    --surface:#18222A;
+    --sunk:#101820;
+    --ink:#E7EEF2;
+    --ink-2:#BCCCD6;
+    --muted:#8FA3B0;
+    --faint:#6B7F8C;
+    --rule:#2B3944;
+    --rule-soft:#222E38;
+
+    --gas:#E2794A;
+    --gas-soft:#33201A;
+    --elek:#5CB8D6;
+    --elek-soft:#142B34;
+    --indigo:#93A6E8;
+    --indigo-soft:#1D2338;
+    --hybride:#C98AA6;
+    --hybride2:#7FC49E;
+    --flag:#D9B45C;
+
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121A20;
+  --surface:#18222A;
+  --sunk:#101820;
+  --ink:#E7EEF2;
+  --ink-2:#BCCCD6;
+  --muted:#8FA3B0;
+  --faint:#6B7F8C;
+  --rule:#2B3944;
+  --rule-soft:#222E38;
+
+  --gas:#E2794A;
+  --gas-soft:#33201A;
+  --elek:#5CB8D6;
+  --elek-soft:#142B34;
+  --indigo:#93A6E8;
+  --indigo-soft:#1D2338;
+  --hybride:#C98AA6;
+  --hybride2:#7FC49E;
+  --flag:#D9B45C;
+
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;      /* geen tekstinflatie in iOS-landschap */
+  text-size-adjust:100%;
+}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--prose);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;                  /* vangt afrondingsoverloop op smalle schermen */
+  overflow-wrap:break-word;
+}
+.wrap{
+  max-width:var(--max);margin:0 auto;
+  padding:0 28px;
+  padding-left:max(28px, env(safe-area-inset-left));
+  padding-right:max(28px, env(safe-area-inset-right));
+}
+
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------------------------------------------------------------- header */
+header{
+  border-bottom:1px solid var(--rule);
+  background:var(--paper);            /* terugval voor browsers zonder color-mix */
+}
+@supports (background: color-mix(in srgb, red 50%, transparent)){
+  header{
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--surface) 70%, transparent), transparent),
+      var(--paper);
+  }
+}
+.masthead{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-end;padding:52px 0 34px}
+.masthead .lede{flex:1 1 380px;min-width:0}
+h1{
+  font-size:clamp(2.4rem,5.4vw,3.9rem);
+  font-weight:800;letter-spacing:-.03em;line-height:.98;
+  margin:.34em 0 0;
+}
+h1 .split{color:var(--gas)}
+h1 .split2{color:var(--elek)}
+.sub{
+  font-size:1.05rem;color:var(--ink-2);max-width:52ch;
+  margin:18px 0 0;font-weight:300;
+}
+.addr{
+  flex:0 0 auto;font-family:var(--mono);font-size:12px;line-height:1.9;
+  color:var(--muted);text-align:right;padding-bottom:6px;
+}
+.addr b{color:var(--ink-2);font-weight:500}
+
+/* ---------------------------------------------------------------- verdict */
+.verdict{padding:40px 0 8px}
+.panel{
+  background:var(--surface);border:1px solid var(--rule);
+  border-radius:3px;box-shadow:var(--shadow);
+}
+.panel-hd{
+  display:flex;flex-wrap:wrap;gap:16px;align-items:baseline;justify-content:space-between;
+  padding:20px 24px;border-bottom:1px solid var(--rule-soft);
+}
+.panel-hd h2{font-size:1.15rem;letter-spacing:-.01em}
+
+.bars{padding:26px 24px 8px}
+.bar-row{display:grid;grid-template-columns:minmax(190px,1.1fr) 3fr;gap:22px;align-items:center;margin-bottom:22px}
+.bar-lab{min-width:0}
+.bar-lab .nm{font-family:var(--display);font-weight:600;font-size:.98rem;display:flex;align-items:flex-start;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;margin-top:.42em}
+.bar-lab .sm{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
+
+.track{position:relative;height:44px}
+.track::before{
+  content:"";position:absolute;left:0;right:0;top:21px;height:1px;
+  background:var(--rule-soft);
+}
+.span{
+  position:absolute;top:14px;height:15px;border-radius:2px;min-width:4px;
+  transition:left .45s cubic-bezier(.2,.7,.3,1), width .45s cubic-bezier(.2,.7,.3,1);
+}
+.span::after{
+  content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:2px;
+  background:repeating-linear-gradient(115deg,transparent 0 5px,rgba(255,255,255,.32) 5px 6px);
+}
+.mid{
+  position:absolute;top:8px;width:2px;height:27px;background:var(--ink);
+  transition:left .45s cubic-bezier(.2,.7,.3,1);
+}
+.track .cap{
+  position:absolute;top:-3px;font-family:var(--mono);font-size:11.5px;font-variant-numeric:tabular-nums;
+  color:var(--muted);white-space:nowrap;transition:left .45s cubic-bezier(.2,.7,.3,1);
+}
+.track .cap.hi{transform:translateX(-100%)}
+
+.verdict-out{
+  display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;
+  padding:18px 24px;border-top:1px solid var(--rule-soft);background:var(--sunk);
+}
+.verdict-out .call{font-family:var(--display);font-weight:600;font-size:1.02rem}
+.verdict-out .why{font-size:.92rem;color:var(--muted);flex:1 1 260px;font-weight:300}
+.chip{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 9px;border-radius:2px;border:1px solid currentColor;
+}
+
+/* ---------------------------------------------------- samenvattingstabel */
+.sumwrap{overflow-x:auto;border-top:1px solid var(--rule-soft);padding:0 24px}
+.sum{width:100%;border-collapse:collapse;min-width:520px}
+.sum th{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);text-align:right;
+  padding:14px 0 9px 18px;border-bottom:1px solid var(--rule-soft);white-space:nowrap;
+}
+.sum th:first-child{text-align:left;padding-left:0}
+.sum td{
+  padding:11px 0 11px 18px;border-bottom:1px solid var(--rule-soft);text-align:right;
+  font-family:var(--fig);font-variant-numeric:tabular-nums lining-nums;font-size:.97rem;
+  white-space:nowrap;                 /* een bedrag breekt nooit over twee regels */
+}
+.sum td:first-child{text-align:left;padding-left:0}
+.sum tr:last-child td{border-bottom:0}
+.sum .nm{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:600;font-size:.94rem}
+.sum .nm span.txt{font-weight:400;color:var(--muted);font-size:.87rem}
+.sum .tot{font-weight:600}
+.sum tr.best .tot{color:var(--ac)}
+.sum .rank{
+  display:inline-block;min-width:22px;font-family:var(--mono);font-size:11px;
+  color:var(--faint);
+}
+.sum tr.best .rank{
+  color:var(--surface);background:var(--ac);border-radius:2px;
+  padding:2px 0;text-align:center;
+}
+
+.certainty{padding:4px 24px 22px}
+.cert-bar{height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;border:1px solid var(--rule-soft)}
+.cert-fill{height:100%;background:var(--ink);width:0;transition:width .4s ease}
+.cert-lab{display:flex;justify-content:space-between;gap:12px;margin-top:9px;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* ---------------------------------------------------------------- sections */
+section{padding:46px 0 0}
+.sec-hd{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:baseline;margin-bottom:20px}
+.sec-hd h2{font-size:1.5rem;letter-spacing:-.02em}
+.sec-hd p{margin:0;color:var(--muted);font-size:.95rem;font-weight:300;flex:1 1 320px;max-width:62ch}
+
+/* ---------------------------------------------------------------- inputs */
+.params{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(215px,100%),1fr));gap:1px;background:var(--rule-soft)}
+.par{background:var(--surface);padding:15px 18px}
+.par label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.par .fld{display:flex;align-items:baseline;gap:7px}
+.par .pre{font-family:var(--mono);font-size:.95rem;color:var(--faint)}
+.par .note{font-family:var(--prose);font-size:.82rem;color:var(--faint);margin-top:7px;line-height:1.4;font-weight:300}
+.par.flagged label{color:var(--flag)}
+.par.flagged{box-shadow:inset 3px 0 0 var(--flag)}
+
+input[type=text]{
+  /* 16px is het minimum waarbij iOS niet inzoomt zodra je een veld aanraakt */
+  font-family:var(--mono);font-size:16px;font-variant-numeric:tabular-nums;
+  background:transparent;color:var(--ink);
+  border:0;border-bottom:1px solid var(--rule);
+  padding:2px 0 4px;width:100%;min-width:0;
+}
+input[type=text]::placeholder{color:var(--faint);opacity:1}
+input[type=text]:focus{outline:none;border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink)}
+input[type=text]:focus-visible{outline:2px solid var(--elek);outline-offset:3px;border-radius:1px}
+
+/* ---------------------------------------------------------------- ledger */
+.opt{margin-bottom:26px;border-left:3px solid var(--ac)}
+.opt-hd{
+  display:flex;flex-wrap:wrap;gap:12px 20px;align-items:baseline;justify-content:space-between;
+  padding:17px 22px;border-bottom:1px solid var(--rule-soft);
+}
+.opt-hd .t{font-family:var(--display);font-weight:600;font-size:1.08rem;color:var(--ac)}
+.opt-hd .t small{display:block;font-family:var(--prose);font-weight:300;font-size:.86rem;color:var(--muted);margin-top:2px}
+.opt-hd .tot{font-family:var(--mono);font-size:1.02rem;font-variant-numeric:tabular-nums;text-align:right}
+.opt-hd .tot small{display:block;font-size:11px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
+
+.ledger{width:100%;border-collapse:collapse}
+.ledger th{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-align:right;padding:10px 14px;border-bottom:1px solid var(--rule-soft);white-space:nowrap;
+}
+.ledger th:first-child{text-align:left}
+.ledger td{padding:12px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.ledger tr:last-child td{border-bottom:0}
+.ledger .post{font-family:var(--display);font-weight:500;font-size:.94rem;line-height:1.3}
+.ledger .why{font-family:var(--prose);font-weight:300;font-size:.85rem;color:var(--muted);margin-top:5px;max-width:46ch;line-height:1.45}
+.ledger .why .mark{color:var(--flag);border-bottom:1px dotted var(--flag)}
+.cellwrap{width:132px}
+.ledger td.c{text-align:right}
+.rng{
+  font-family:var(--mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums;
+  margin-top:5px;white-space:nowrap;visibility:hidden;
+}
+.rng.fixed{visibility:visible;text-decoration:line-through;opacity:.65}
+.dash{color:var(--faint);font-family:var(--mono)}
+
+.subtot td{border-top:1px solid var(--rule);font-family:var(--mono);font-size:.9rem;font-variant-numeric:tabular-nums}
+.subtot td:first-child{font-family:var(--display);font-weight:600}
+.subtot.grand td{background:var(--sunk);border-bottom:0}
+
+/* ---------------------------------------------------------------- exploit */
+.grid2{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(250px,1fr);gap:26px;align-items:start}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:12px 14px;text-align:right;border-bottom:1px solid var(--rule);
+}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--rule-soft);font-family:var(--mono);font-size:.9rem;font-variant-numeric:tabular-nums;text-align:right}
+.tbl td:first-child{font-family:var(--prose);font-weight:400;font-size:.94rem;text-align:left}
+.tbl tr.rule td{border-top:1px solid var(--rule);font-weight:600}
+.tbl tr.rule td:first-child{font-family:var(--display);font-weight:600}
+.tbl .o1{color:var(--gas)}
+.tbl .o2{color:var(--elek)}
+.tbl .o3{color:var(--indigo)}
+.tbl .o4{color:var(--hybride)}
+.tbl .o5{color:var(--hybride2)}
+
+.slider-box{padding:22px 24px}
+.slider-box input[type=range]{width:100%;accent-color:var(--gas);margin:12px 0 6px}
+.slider-val{font-family:var(--mono);font-size:1.6rem;font-variant-numeric:tabular-nums;color:var(--gas)}
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule-soft);margin-top:20px}
+.scen div{background:var(--surface);padding:13px 14px;text-align:center}
+.scen .k{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em}
+.scen .v{font-family:var(--display);font-weight:600;font-size:.95rem;margin-top:5px}
+.scen .m{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:2px}
+
+/* ---------------------------------------------------------------- points */
+/* Scheidingslijnen op de cel zelf, niet via de containerachtergrond:
+   zo blijft een niet-volle laatste rij onzichtbaar. */
+.pts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:1px;background:var(--surface)}
+.pt{background:var(--surface);padding:19px 20px;box-shadow:1px 0 0 var(--rule-soft),0 1px 0 var(--rule-soft)}
+.pt .cat{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+.pt h3{font-family:var(--display);font-weight:600;font-size:1rem;margin:7px 0 8px;letter-spacing:-.01em}
+.pt p{margin:0;font-size:.9rem;font-weight:300;color:var(--ink-2);line-height:1.5}
+.pt .act{
+  margin-top:11px;padding-top:11px;border-top:1px dashed var(--rule);
+  font-family:var(--mono);font-size:11.5px;line-height:1.55;color:var(--muted);
+}
+.pt .act::before{content:"→ ";color:var(--ac,var(--elek))}
+
+/* ---------------------------------------------------------------- foot */
+footer{margin-top:56px;border-top:1px solid var(--rule);padding:26px 0 60px}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+footer p{margin:0;font-size:.86rem;font-weight:300;color:var(--muted);line-height:1.6}
+footer .eyebrow{margin-bottom:8px;display:block}
+.btn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;color:var(--muted);border:1px solid var(--rule);
+  padding:7px 13px;border-radius:2px;cursor:pointer;
+}
+.btn:hover{color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--elek);outline-offset:2px}
+
+/* ---------------------------------------------------------------- cijfers
+   Alle getallen in Newsreader met echte tabelcijfers: gelijke breedte per
+   cijfer, schone nul. De mono blijft voor de kleine kapitaal-labels. */
+.num,.fig,
+.bar-lab .sm,.track .cap,.cert-lab,
+.opt-hd .tot,.rng,.dash,.subtot td,
+.tbl td,.par .pre,
+.slider-val,.scen .k,.scen .m,
+input[type=text]{
+  font-family:var(--fig);
+  font-variant-numeric:tabular-nums lining-nums;
+  font-feature-settings:"tnum" 1,"lnum" 1;
+  letter-spacing:0;
+}
+.opt-hd .tot small,.tbl td:first-child{font-family:var(--mono)}
+.tbl td:first-child{font-family:var(--prose)}
+.track .cap{font-size:12px}
+.cert-lab{font-size:12px}
+.rng{font-size:12px}
+.subtot td,.tbl td{font-size:.95rem}
+.par .fld{gap:5px}
+.slider-val{font-size:1.75rem;font-weight:500}
+.scen .k{font-size:12px}
+.scen .m{font-size:12px}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+/* Elk breed blok scrollt binnen zijn eigen kader, nooit de pagina zelf. */
+.ledgerwrap,.tblwrap{overflow-x:auto}
+.sumwrap,.ledgerwrap,.tblwrap{-webkit-overflow-scrolling:touch}
+
+@media (max-width:900px){
+  .masthead{padding:38px 0 26px;gap:24px}
+  .verdict{padding:28px 0 8px}
+  section{padding:36px 0 0}
+}
+
+/* Aanraakbediening: iOS zoomt in op elk invoerveld onder 16px, dus vanaf hier
+   gaan de velden naar 16px en worden ze hoger aan te tikken. */
+@media (max-width:760px), (pointer:coarse){
+  input[type=text]{font-size:16px;padding:6px 0 8px}
+  .par{padding:14px 16px}
+  .par .pre{font-size:1rem}
+  .cellwrap{width:110px}
+  .ledger td,.ledger th{padding:12px 10px}
+  input[type=range]{height:30px}
+  .btn{padding:11px 16px}
+  summary{padding:16px 18px!important}
+}
+
+@media (max-width:620px){
+  .wrap{
+    padding-left:max(18px, env(safe-area-inset-left));
+    padding-right:max(18px, env(safe-area-inset-right));
+  }
+  .masthead{padding:30px 0 22px}
+  .addr{text-align:left}
+  .panel-hd,.bars,.certainty,.verdict-out,.slider-box{padding-left:18px;padding-right:18px}
+  .sumwrap{padding-left:18px;padding-right:18px}
+
+  .bar-row{grid-template-columns:1fr;gap:4px;margin-bottom:20px}
+  .track{height:38px}
+  .track .cap{font-size:11px}
+
+  /* De omschrijving staat al bij de balken hierboven, dus in de tabel volstaat
+     het optienummer en past alles zonder zijwaarts scrollen. */
+  .sum{min-width:0}
+  .sum .nm{white-space:nowrap}
+  .sum .nm span.txt{display:none}
+  .sum th,.sum td{padding-left:8px;font-size:.92rem}
+  .sum th{font-size:9.5px;letter-spacing:.04em;white-space:normal;vertical-align:bottom}
+
+  .ledger .why{display:none}
+  .ledger .post{font-size:.9rem}
+  .opt-hd{padding:15px 18px}
+  .pt{padding:17px 18px}
+  .sec-hd h2{font-size:1.3rem}
+  h1{letter-spacing:-.02em}
+}
+
+@media (max-width:400px){
+  .sum th,.sum td{padding-left:6px}
+  .sum td{font-size:.88rem}
+  .cellwrap{width:92px}
+  .ledger td,.ledger th{padding:11px 7px}
+  .scen div{padding:11px 6px}
+  .scen .k,.scen .m{font-size:10.5px}
+}
+@media print{
+  body{background:#fff}
+  .panel{box-shadow:none;break-inside:avoid}
+  .slider-box input[type=range],.btn{display:none}
+}
+</style>
+
+<header>
+  <div class="wrap masthead">
+    <div class="lede">
+      <span class="eyebrow">Vervangingsbesluit · geiser, fornuis en rookgasafvoer</span>
+      <h1><span class="split">Propaan</span> of <span class="split2">stroom</span></h1>
+      <p class="sub">De geiser heeft gebreken en de rookgasafvoer moet vervangen worden. Het gasfornuis blijft staan, behalve waar je all-electric gaat. <span id="routeTel">Vijf</span> routes uit die situatie &mdash; vul offertebedragen in zodra je ze hebt, elke ingevulde regel maakt de bandbreedte smaller.</p>
+    </div>
+    <div class="addr">
+      <b>Weinig gebruikt pand</b><br>propaan, geen aardgas<br>
+      1&times;25A &middot; 5,75 kW<br>
+      984 kWh/jr<br>
+      12 m&sup3; propaan/jr
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============================================================ VERDICT -->
+  <div class="verdict">
+    <div class="panel">
+      <div class="panel-hd">
+        <h2>Totale kosten over <span class="num" id="hdJaren">15</span> jaar</h2>
+        <span class="eyebrow">investering plus exploitatie &middot; incl. btw</span>
+      </div>
+      <div class="bars" id="bars"></div>
+      <div class="sumwrap"><table class="sum">
+        <thead><tr>
+          <th>Optie</th><th>Investering</th><th>Jaarlast</th><th>Totaal 15 jaar</th><th>Rang</th>
+        </tr></thead>
+        <tbody id="sum"></tbody>
+      </table></div>
+      <div class="certainty">
+        <div class="cert-bar"><div class="cert-fill" id="certFill"></div></div>
+        <div class="cert-lab">
+          <span id="certTxt">0 van 0 bedragen vastgelegd</span>
+          <span id="spreadTxt"></span>
+        </div>
+      </div>
+      <div class="verdict-out">
+        <span class="chip" id="vChip">&mdash;</span>
+        <span class="call" id="vCall"></span>
+        <span class="why" id="vWhy"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================= UITGANGSPUNTEN -->
+  <section>
+    <div class="sec-hd">
+      <h2>Uitgangspunten</h2>
+      <p>Elektratarief en verbruik komen uit de jaarnota. De geel gemarkeerde velden zijn aannames die nog niet geverifieerd zijn &mdash; die bepalen de uitkomst het sterkst.</p>
+    </div>
+    <div class="panel">
+      <div class="params" id="params"></div>
+      <details>
+        <summary style="padding:14px 18px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--rule-soft)">Rendementen en technische aannames</details>
+        <div class="params" id="params2" style="border-top:1px solid var(--rule-soft)"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================================================ LEDGERS -->
+  <section>
+    <div class="sec-hd">
+      <h2>Investering</h2>
+      <p>De grijze bedragen zijn indicatieve marktranges, geen offerte. Typ een werkelijk bedrag in een veld en dat vervangt de range voor die post.</p>
+    </div>
+    <div id="opties"></div>
+  </section>
+
+  <!-- ========================================================= EXPLOITATIE -->
+  <section>
+    <div class="sec-hd">
+      <h2>Exploitatie</h2>
+      <p>Wat de installatie daarna elk jaar kost. Hier zit het werkelijke verschil tussen de opties: over vijftien jaar weegt dit zwaarder dan het verschil in aanschaf.</p>
+    </div>
+    <div class="grid2">
+      <div class="panel tblwrap">
+        <table class="tbl">
+          <thead><tr id="explHead"><th>Post</th></tr></thead>
+          <tbody id="expl"></tbody>
+        </table>
+      </div>
+      <div class="panel slider-box">
+        <span class="eyebrow">De kantelfactor</span>
+        <h3 style="font-size:1.05rem;margin:8px 0 2px">Tankhuur propaan</h3>
+        <p style="font-size:.88rem;font-weight:300;color:var(--muted);margin:6px 0 0">Losse flessen kosten niets vast. Een gehuurde tank kost &euro;150&ndash;250 per jaar. Alleen optie 2 en 3 laten die post vervallen &mdash; optie 4 houdt de gasaansluiting voor het koken, en blijft dus ook de tankhuur betalen.</p>
+        <div class="slider-val"><span id="thVal">&euro; 150</span> <span style="font-size:.8rem;color:var(--muted)">per jaar</span></div>
+        <input type="range" id="thSlider" min="0" max="300" step="10" value="150" aria-label="Tankhuur propaan per jaar">
+        <div class="scen" id="scen"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== AANDACHTSPUNTEN -->
+  <section>
+    <div class="sec-hd">
+      <h2>Aandachtspunten</h2>
+      <p id="ptIntro">Punten die geen bedrag hebben maar de keuze wel bepalen. Elk punt heeft een concrete actie.</p>
+    </div>
+    <div class="panel"><div class="pts" id="pts"></div></div>
+  </section>
+
+  <footer>
+    <div class="cols">
+      <div>
+        <span class="eyebrow">Bronnen</span>
+        <p>Elektraverbruik en tarieven: de jaarnota van de energieleverancier over september&nbsp;2024 tot september&nbsp;2025. Propaanverbruik: opgave ter plaatse, nog niet geverifieerd op de propaannota. Prijzen warmtepompboiler: Ariston Energion 80&nbsp;l, meldcode KA27395, opgave leverancier augustus&nbsp;2026.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Status van de bedragen</span>
+        <p>Alle bedragen zijn inclusief btw en indicatief zolang ze niet zijn overschreven. Vraag offertes op dezelfde basis en bij een CO&#8209;gecertificeerd bedrijf.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Invoer</span>
+        <p style="margin-bottom:12px">Wat je invult blijft in deze browser bewaard.</p>
+        <button class="btn" id="reset" type="button">Invoer wissen</button>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ------------------------------------------------------------------ data */
+const OPTIES = [
+  { id:"o1", nr:"Optie 1", naam:"Vervangen", onder:"blijft op propaan", kleur:"var(--gas)", posten:[
+    { id:"geiser", post:"Geiser propaan, gesloten toestel", a:[700,1200], i:[400,800],
+      why:"Een open toestel wordt in de praktijk niet teruggeplaatst, en werk aan gastoestellen mag alleen door een CO-gecertificeerd bedrijf." },
+    { id:"afvoer", post:"Rookgasafvoer vervangen, incl. dakdoorvoer", a:[350,700], i:[450,800],
+      why:"Het dakwerk is het grootste deel van deze post. Reken op arbeid en niet alleen op materiaal. Dit is de post die optie 4 volledig ontloopt." }
+  ]},
+  { id:"o2", nr:"Optie 2", naam:"Upgraden", onder:"warmtepompboiler", kleur:"var(--elek)", posten:[
+    { id:"wpb", post:"Warmtepompboiler 80 l — Ariston Energion, incl. aansluitset", a:[739,1049], i:[499,699],
+      why:"Concrete prijs: €699 toestel plus €40 aansluitset, installatie €499 bij dezelfde leverancier. Het hoge scenario is de reguliere prijs zonder actie (€999 + €50 + €699). 101 cm hoog en 1.420 W, dus het past qua ruimte én qua aansluiting. Het haalt zijn warmte uit de ruimte waar het staat en koelt die af — reken op circa 20 m³ ruimtevolume." },
+    { id:"sloop", post:"Geiser verwijderen, gasleiding afdoppen, dakdoorvoer dicht", a:[0,0], i:[200,400],
+      why:"Hoort bij het van het gas af gaan: toestel eruit, leiding dicht en de doorvoer in het dak waterdicht afgewerkt." },
+    { id:"inductie", post:"Inductieplaat, geschikt voor één fase", a:[250,700], i:[0,0],
+      why:"Alleen nodig omdat je hier van het gas af gaat; het huidige fornuis blijft in optie 1 en 4 gewoon staan. Op 1×25A is er 5,75 kW voor de hele woning — een 4-zone plaat met booster trekt in zijn eentje al 7,4 kW en past er niet in." },
+    { id:"kookgroep", post:"Kookgroep in de meterkast", a:[0,0], i:[300,500],
+      why:"Op één fase is geen 400V Perilex-groep mogelijk, en bij een hoofdzekering van 25A ook geen 32A kookgroep. Maximaal een 16A groep van 3,7 kW." },
+    { id:"boilergroep", post:"Groep voor de warmtepompboiler", a:[0,0], i:[100,200],
+      why:"Eén 16A groep; het toestel trekt 1.420 W." },
+    { id:"verzwaren", post:"Aansluiting verzwaren naar 3×25A, indien nodig", a:[0,0], i:[0,1200],
+      why:"Eenmalige aansluitwijziging bij Stedin. Blijft in dezelfde tariefcategorie, dus de netbeheerkosten per jaar stijgen niet. Nodig zodra je meer wilt dan een 2-pits plaat." },
+    { id:"kast", post:"Groepenkast vervangen, indien nodig", a:[0,0], i:[0,600],
+      why:"Alleen nodig als er geen ruimte of aardlekbeveiliging vrij is voor een extra groep. Laat de meterkast bekijken voordat je hierop rekent." },
+    { id:"isde", post:"ISDE-subsidie warmtepompboiler", a:[-500,0], i:[0,0],
+      why:"€500 voor dit toestel, meldcode KA27395 — het staat dus op de RVO-apparatenlijst. Blijft voorwaardelijk: plaatsing door een installatiebedrijf, en woning én aanvrager moeten kwalificeren. Bij een tweede of recreatiewoning vervalt het meestal, vandaar €0 in het hoge scenario." }
+  ]},
+  { id:"o3", nr:"Optie 3", naam:"Upgraden", onder:"elektrische boiler", kleur:"var(--indigo)", posten:[
+    { id:"boiler", post:"Elektrische boiler 80–120 l", a:[250,500], i:[400,700],
+      why:"Simpeler dan een warmtepompboiler: geen subsidie, geen opstellingseisen, en makkelijker te legen bij vorst." },
+    { id:"sloop", post:"Geiser verwijderen, gasleiding afdoppen, dakdoorvoer dicht", a:[0,0], i:[200,400], why:"" },
+    { id:"inductie", post:"Inductieplaat, geschikt voor één fase", a:[250,700], i:[0,0], why:"" },
+    { id:"kookgroep", post:"Kookgroep in de meterkast", a:[0,0], i:[300,500], why:"" },
+    { id:"boilergroep", post:"Boilergroep", a:[0,0], i:[100,200], why:"" },
+    { id:"kast", post:"Groepenkast vervangen, indien nodig", a:[0,0], i:[0,600], why:"" },
+    { id:"verzwaren", post:"Aansluiting verzwaren naar 3×25A, indien nodig", a:[0,0], i:[0,1200],
+      why:"Hier eerder nodig dan bij optie 2: een elektrische boiler trekt circa 2 kW, tegen circa 0,5 kW voor een warmtepompboiler. Samen met koken past dat slecht in 5,75 kW." }
+  ]},
+  { id:"o4", nr:"Optie 4", naam:"Hybride", onder:"koken op gas, tapwater elektrisch", kleur:"var(--hybride)", posten:[
+    { id:"wpb", post:"Warmtepompboiler 80 l — Ariston Energion, incl. aansluitset", a:[739,1049], i:[499,699],
+      why:"Zelfde toestel als in optie 2. Met 1.420 W past het ruim binnen de 25A, ook zonder de aansluiting te verzwaren." },
+    { id:"isde", post:"ISDE-subsidie warmtepompboiler", a:[-500,0], i:[0,0],
+      why:"€500, meldcode KA27395. Voorwaardelijk op woning en aanvrager, niet op het apparaat." },
+    { id:"sloop", post:"Geiser verwijderen, rookgasafvoer dichtzetten", a:[0,0], i:[200,400],
+      why:"Dit is de winst van deze route: de rookgasafvoer hoeft niet vervangen te worden, alleen dicht. Een gasfornuis heeft er geen nodig." },
+    { id:"boilergroep", post:"Groep voor de warmtepompboiler", a:[0,0], i:[100,200],
+      why:"Eén 16A groep volstaat. Geen kookgroep, geen verzwaring." },
+    { id:"kast", post:"Groepenkast vervangen, indien nodig", a:[0,0], i:[0,600],
+      why:"Alleen als er geen ruimte vrij is voor die ene extra groep." }
+  ]},
+  { id:"o5", nr:"Optie 5", naam:"Hybride, eenvoudig", onder:"koken op gas, elektrische boiler", kleur:"var(--hybride2)", posten:[
+    { id:"boiler", post:"Elektrische boiler 80–120 l", a:[250,500], i:[400,700],
+      why:"De minimale ingreep: geen compressor, geen subsidieaanvraag, geen opstellingseisen, en het vat is bij vorst zo geleegd. Je betaalt het terug in stroom." },
+    { id:"sloop", post:"Geiser verwijderen, rookgasafvoer dichtzetten", a:[0,0], i:[200,400],
+      why:"Net als in optie 4 vervalt het vervangen van de rookgasafvoer." },
+    { id:"boilergroep", post:"Groep voor de boiler", a:[0,0], i:[100,200],
+      why:"Circa 2 kW op een 16A groep. Naast koken op gas past dat binnen de 25A." },
+    { id:"kast", post:"Groepenkast vervangen, indien nodig", a:[0,0], i:[0,600],
+      why:"Alleen als er geen ruimte vrij is voor die ene extra groep." }
+  ]}
+];
+
+const PARAMS = [
+  { id:"pm3",   grp:1, lab:"Propaanverbruik",      val:12,    unit:"m³/jr", flag:true,
+    note:"Controleren: propaan wordt per kg of liter afgerekend, niet per m³." },
+  { id:"pprijs",grp:1, dec:2, lab:"Propaanprijs",         val:3.80,  pre:"€", unit:"/kg", flag:true,
+    note:"Uitgegaan van een fles van 10,5 kg voor circa €40." },
+  { id:"tarief",grp:1, dec:3, lab:"Elektratarief",        val:0.323, pre:"€", unit:"/kWh",
+    note:"Levering €0,144 plus energiebelasting €0,123, met btw. Bron: jaarnota p.6." },
+  { id:"jaren", grp:1, lab:"Beschouwingsperiode",  val:15,    unit:"jaar",
+    note:"Zonder indexatie en zonder discontering." },
+  { id:"onv",   grp:1, lab:"Post onvoorzien",      val:10,    unit:"%",
+    note:"Op het subtotaal van elke optie." },
+
+  { id:"aandeel",grp:2, lab:"Aandeel tapwater",    val:80,  unit:"%", flag:true, note:"Van het propaanverbruik; de rest is koken." },
+  { id:"rgeiser",grp:2, lab:"Rendement geiser",    val:75,  unit:"%", note:"Doorstroomtoestel." },
+  { id:"rgas",   grp:2, lab:"Rendement gaskoken",  val:45,  unit:"%", note:"" },
+  { id:"rind",   grp:2, lab:"Rendement inductie",  val:85,  unit:"%", note:"" },
+  { id:"cop",    grp:2, dec:1, lab:"COP warmtepompboiler",val:2.8, unit:"", note:"Jaargemiddelde." },
+  { id:"vwp",    grp:2, lab:"Stilstandverlies WP-boiler", val:250, unit:"kWh/jr", flag:true,
+    note:"Vat van 80 l. Bij dit lage tapwatergebruik is stilstand de grootste post, niet het douchen. De leverancier noemt 535 kWh/jr, maar dat geldt bij een veel groter tapprofiel dan hier." },
+  { id:"vel",    grp:2, lab:"Stilstandverlies elektrische boiler", val:250, unit:"kWh/jr", note:"Vat van 80–120 l." }
+];
+
+const PUNTEN = [
+  ["Techniek","Open geiser","Als het huidige toestel open is — en de aparte rookgasafvoer wijst daarop — wordt daar geen nieuw open toestel voor teruggeplaatst. Een gesloten toestel vraagt een concentrische afvoer: ander en duurder werk.","Laat de installateur vaststellen of het toestel open of gesloten is."],
+  ["Techniek","De hybride route ontloopt de rookgasafvoer","Optie 4 vervangt alleen de geiser en houdt koken op gas. Daarmee vervalt het vervangen van de rookgasafvoer — die hoeft alleen dichtgezet te worden, want een gasfornuis heeft er geen nodig. Dat is precies de duurste post uit optie 1.","Weeg dat af tegen het feit dat je de propaanaansluiting, en dus de tankhuur, wél houdt."],
+  ["Techniek","Leidingwerk en opstelplaats","Een boilervat staat zelden op de plek waar de geiser hing. Reken op nieuw waterleidingwerk naar keuken en douche, en op een langere wachttijd voordat er warm water uit de kraan komt.","Bepaal de opstelplaats vóór je de offerte aanvraagt — die bepaalt de installatiekosten grotendeels."],
+  ["Wetgeving","CO-certificering","Werk aan gasverbrandingstoestellen mag alleen door een gecertificeerd bedrijf. Dat sluit doe-het-zelf in optie 1 uit.","Vraag om het certificaatnummer bij de offerte."],
+  ["Subsidie","ISDE is voorwaardelijk","Het toestel zelf is rond: meldcode KA27395 staat op de RVO-apparatenlijst en levert €500. De voorwaarde die overblijft zit bij de woning en de aanvrager, niet bij het apparaat.","Het correspondentieadres wijkt af van het objectadres, wat op een tweede woning wijst. Controleer de woonbestemming vóór je de €500 inboekt."],
+  ["Subsidie","Actieprijs is verlopen","De aanbieding van €699 stond op de site met de vermelding dat de actie liep tot en met 31 juli 2026. Die datum is inmiddels gepasseerd terwijl de prijs er nog staat.","Vraag schriftelijk bevestiging van de prijs voordat je bestelt."],
+  ["Elektra","De aansluiting is de bottleneck","1×25A betekent 5,75 kW voor de hele woning. Een 4-zone inductieplaat met booster trekt in zijn eentje al 7,4 kW en past er simpelweg niet in. Dit is de zwaarste beperking op optie 2 en 3.","Kies een 2-pits plaat of een plaat met vermogensbegrenzing, óf verzwaar de aansluiting."],
+  ["Elektra","Verzwaren is goedkoper dan het lijkt","Van 1×25A naar 3×25A blijft binnen dezelfde Stedin-tariefcategorie — de jaarnota factureert nu al onder “t/m 3×25 amp”. Dat kost eenmalig een aansluitwijziging, maar verhoogt de netbeheerkosten per jaar niet.","Vraag Stedin om een prijsopgave vóór je de kookplaat kiest: verzwaren kan goedkoper uitpakken dan het beperken van je opties."],
+  ["Elektra","Kookgroep op één fase","Op één fase kun je geen 400V Perilex-groep leggen, en bij een hoofdzekering van 25A ook geen 1-fase 32A kookgroep. Maximaal een 16A groep van 3,7 kW.","Laat de gelijktijdigheid doorrekenen: kookplaat, boiler en basislast samen moeten onder 25A blijven."],
+  ["Gebruik","Geluid van de warmtepompboiler","49 dB is ongeveer een draaiende vaatwasser — hoorbaar, maar geen herrie. Het geldt alleen zolang de compressor draait, en bij dit tapwatergebruik is dat hooguit een uur per dag. Bepalend is niet het getal maar de plek: in een berging, garage of kelder merk je er niets van, naast of onder een slaapkamer wel. Check ook of de fabrikant geluidsvermogen (Lw) of geluidsdruk op 1 m opgeeft — bij geluidsvermogen ligt de werkelijke druk in de ruimte zo'n 10 dB lager.","Zet hem niet tegen een slaapkamerwand, plaats hem op een vaste vloer tegen trillingen, en gebruik de tijdklok zodat hij draait wanneer er niemand is. Optie 3 en 5 hebben dit bezwaar niet."],
+  ["Gebruik","Vorstrisico","Bij 984 kWh stroom en 12 m³ propaan per jaar is er praktisch geen verwarmingsenergie. Staat het pand in de winter onverwarmd, dan is een vat van 150–200 liter een vorstrisico waar een geiser dat niet is.","Bepaal eerst hoe en of het pand verwarmd wordt."],
+  ["Gebruik","Stilstand versus gebruik","Bij dit verbruiksniveau kost een boiler meer energie aan stilstand dan aan douchen. Daarom is het gekozen vat van 80 liter de juiste maat: groter kost alleen maar meer stilstandverlies zonder dat je er iets voor terugkrijgt.","Wijk niet uit naar 100 of 150 liter zonder reden — 80 liter is goed voor ongeveer 20 minuten douchen."],
+  ["Administratie","Eenheid propaan","Propaan wordt per kg of liter afgerekend, niet per m³. De 12 m³ is intern wel consistent — circa 23 kg, oftewel twee flessen — maar niet geverifieerd.","Controleer de propaannota."],
+  ["Administratie","Btw","Alle bedragen op deze pagina zijn inclusief btw. Offertes worden niet altijd op die basis uitgebracht, en dan vergelijk je appels met peren.","Vraag offertes expliciet inclusief btw."],
+  ["Model","Investering is niet de maatstaf","Een lagere aanschafprijs zegt weinig zolang de jaarlasten uiteenlopen. Over vijftien jaar telt de exploitatie voor duizenden euro's mee, en dat verschil is groter dan het verschil in investering.","Beoordeel op de totale kosten over 15 jaar, niet op de investering alleen."]
+];
+
+/* ------------------------------------------------------------------ state */
+const KEY = "installatiekeuze-v1";
+const OUDE_KEY = "doorn-installatie-v1";   // eerdere sleutel; invoer wordt overgenomen
+let store = { cells:{}, params:{} };
+try {
+  const s = localStorage.getItem(KEY) || localStorage.getItem(OUDE_KEY);
+  if (s) store = Object.assign(store, JSON.parse(s));
+} catch(e){}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+
+const P = id => {
+  const d = PARAMS.find(p => p.id === id);
+  const v = store.params[id];
+  if (v === undefined || v === null || isNaN(v)) return d ? d.val : 0;
+  return v;
+};
+
+/* ------------------------------------------------------------------ utils */
+const eur  = n => "€ " + Math.round(n).toLocaleString("nl-NL");
+const eurS = n => (n < 0 ? "− " : "") + "€ " + Math.abs(Math.round(n)).toLocaleString("nl-NL");
+const kwh  = n => Math.round(n).toLocaleString("nl-NL");
+
+function parseNL(s){
+  if (typeof s !== "string") return null;
+  s = s.replace(/[€\s]/g,"").replace(/\.(?=\d{3}\b)/g,"").replace(",",".");
+  if (s === "" || s === "-") return null;
+  const n = parseFloat(s);
+  return isNaN(n) ? null : n;
+}
+function fmtIn(n, dec){
+  return n.toLocaleString("nl-NL", dec
+    ? {minimumFractionDigits:dec, maximumFractionDigits:dec}
+    : {maximumFractionDigits:3});
+}
+
+/* ------------------------------------------------------------- berekening */
+function cellRange(oid, pid, kind){
+  const opt  = OPTIES.find(o => o.id === oid);
+  const post = opt.posten.find(p => p.id === pid);
+  const base = post[kind];
+  const act  = store.cells[oid + "." + pid + "." + kind];
+  if (act !== undefined && act !== null) return [act, act, true];
+  return [base[0], base[1], false];
+}
+
+function optieTotaal(oid){
+  const opt = OPTIES.find(o => o.id === oid);
+  let lo = 0, hi = 0;
+  opt.posten.forEach(p => {
+    ["a","i"].forEach(k => {
+      const [l,h] = cellRange(oid, p.id, k);
+      lo += l; hi += h;
+    });
+  });
+  const f = 1 + P("onv")/100;
+  return [lo*f, hi*f];
+}
+
+function energie(){
+  const pkwh   = P("pm3") * 93 / 3.6;
+  const pgas   = P("pm3") * 1.88 * P("pprijs");
+  const tap    = pkwh * (P("aandeel")/100) * (P("rgeiser")/100);
+  const kook   = pkwh * (1 - P("aandeel")/100) * (P("rgas")/100);
+  const kookE  = kook / (P("rind")/100);
+  const tapWP  = (tap + P("vwp")) / P("cop");
+  const tapEL  = tap + P("vel");
+  const kookdeel = 1 - P("aandeel")/100;
+  return { pkwh, pgas, tap, kook, kookE, tapWP, tapEL, kookdeel };
+}
+
+/* Per optie: welk deel van het propaan blijft, en hoeveel elektra komt erbij.
+   gasdeel 1 = alles blijft op gas, 0 = helemaal van het gas af.
+   propaan = houdt de aansluiting, en dus de tankhuur. */
+const PROFIEL = {
+  o1: e => ({ gasdeel:1,             propaan:true,  kwh:0 }),
+  o2: e => ({ gasdeel:0,             propaan:false, kwh:e.tapWP + e.kookE }),
+  o3: e => ({ gasdeel:0,             propaan:false, kwh:e.tapEL + e.kookE }),
+  o4: e => ({ gasdeel:e.kookdeel,    propaan:true,  kwh:e.tapWP }),
+  o5: e => ({ gasdeel:e.kookdeel,    propaan:true,  kwh:e.tapEL })
+};
+
+function jaarlast(th){
+  const e = energie();
+  const t = P("tarief");
+  if (th === undefined) th = tankhuur;
+  const out = { e };
+  OPTIES.forEach(o => {
+    const pr = PROFIEL[o.id](e);
+    out[o.id] = e.pgas * pr.gasdeel + (pr.propaan ? th : 0) + pr.kwh * t;
+  });
+  return out;
+}
+
+let tankhuur = (store.params.tankhuur !== undefined) ? store.params.tankhuur : 150;
+
+function totaal15(th){
+  const j = jaarlast(th === undefined ? tankhuur : th);
+  const n = P("jaren");
+  const out = {};
+  OPTIES.forEach(o => {
+    const [lo,hi] = optieTotaal(o.id);
+    out[o.id] = [lo + j[o.id]*n, hi + j[o.id]*n];
+  });
+  return out;
+}
+
+/* ------------------------------------------------------------------ build */
+const q = s => document.querySelector(s);
+
+const TEL = ["nul","één","twee","drie","vier","vijf","zes","zeven","acht","negen","tien",
+             "elf","twaalf","dertien","veertien","vijftien","zestien","zeventien"];
+const telwoord = (n, hoofdletter) => {
+  const w = TEL[n] || String(n);
+  return hoofdletter ? w.charAt(0).toUpperCase() + w.slice(1) : w;
+};
+
+// ---- parameters
+function buildParams(){
+  [1,2].forEach(g => {
+    const host = q(g === 1 ? "#params" : "#params2");
+    host.innerHTML = "";
+    PARAMS.filter(p => p.grp === g).forEach(p => {
+      const d = document.createElement("div");
+      d.className = "par" + (p.flag ? " flagged" : "");
+      const cur = P(p.id);
+      d.innerHTML =
+        '<label for="par-'+p.id+'">'+p.lab+'</label>'+
+        '<div class="fld">'+ (p.pre ? '<span class="pre">'+p.pre+'</span>' : '') +
+        '<input type="text" inputmode="decimal" id="par-'+p.id+'" value="'+fmtIn(cur,p.dec)+'">'+
+        (p.unit ? '<span class="pre">'+p.unit+'</span>' : '') + '</div>'+
+        (p.note ? '<div class="note">'+p.note+'</div>' : '');
+      host.appendChild(d);
+      const inp = d.querySelector("input");
+      inp.addEventListener("input", () => {
+        const v = parseNL(inp.value);
+        if (v === null) delete store.params[p.id]; else store.params[p.id] = v;
+        save(); update();
+      });
+    });
+  });
+}
+
+// ---- ledgers
+function buildOpties(){
+  const host = q("#opties");
+  host.innerHTML = "";
+  OPTIES.forEach(o => {
+    const panel = document.createElement("div");
+    panel.className = "panel opt";
+    panel.style.setProperty("--ac", o.kleur);
+
+    let rows = "";
+    o.posten.forEach(p => {
+      const cell = k => {
+        const base = p[k];
+        if (base[0] === 0 && base[1] === 0) return '<span class="dash">&mdash;</span>';
+        const key = o.id+"."+p.id+"."+k;
+        const act = store.cells[key];
+        const ph  = base[0] === base[1] ? fmtIn(base[0]) : fmtIn(base[0])+"–"+fmtIn(base[1]);
+        const rng = "was " + (base[0] === base[1] ? eurS(base[0]) : eurS(base[0])+" – "+eurS(base[1]));
+        return '<div class="cellwrap" style="margin-left:auto">'+
+          '<input type="text" inputmode="decimal" data-key="'+key+'" placeholder="'+ph+'" '+
+          'aria-label="'+p.post+' '+(k==="a"?"aanschaf":"installatie")+'" '+
+          'value="'+(act!==undefined&&act!==null?fmtIn(act):"")+'" style="text-align:right">'+
+          '<div class="rng'+(act!==undefined&&act!==null?" fixed":"")+'">'+rng+'</div></div>';
+      };
+      rows += '<tr><td><div class="post">'+p.post+'</div>'+
+              (p.why ? '<div class="why">'+p.why+'</div>' : '')+'</td>'+
+              '<td class="c">'+cell("a")+'</td><td class="c">'+cell("i")+'</td>'+
+              '<td class="c"><span class="num" data-rowtot="'+o.id+"."+p.id+'"></span></td></tr>';
+    });
+
+    panel.innerHTML =
+      '<div class="opt-hd"><div class="t">'+o.nr+' &middot; '+o.naam+'<small>'+o.onder+'</small></div>'+
+      '<div class="tot"><small>investering</small><span data-opttot="'+o.id+'"></span></div></div>'+
+      '<div class="ledgerwrap"><table class="ledger"><thead><tr>'+
+      '<th>Post</th><th>Aanschaf</th><th>Installatie</th><th>Totaal</th></tr></thead><tbody>'+rows+
+      '<tr class="subtot"><td>Subtotaal</td><td></td><td></td><td class="c"><span data-sub="'+o.id+'"></span></td></tr>'+
+      '<tr class="subtot"><td style="font-family:var(--prose);font-weight:400">Onvoorzien</td><td></td><td></td><td class="c"><span data-onv="'+o.id+'"></span></td></tr>'+
+      '<tr class="subtot grand"><td>Totaal</td><td></td><td></td><td class="c"><span data-grand="'+o.id+'"></span></td></tr>'+
+      '</tbody></table></div>';
+
+    host.appendChild(panel);
+  });
+
+  host.querySelectorAll("input[data-key]").forEach(inp => {
+    inp.addEventListener("input", () => {
+      const v = parseNL(inp.value);
+      if (v === null) delete store.cells[inp.dataset.key]; else store.cells[inp.dataset.key] = v;
+      const rng = inp.parentElement.querySelector(".rng");
+      if (rng) rng.classList.toggle("fixed", v !== null);
+      save(); update();
+    });
+  });
+}
+
+// ---- verdict bars
+function buildBars(){
+  const host = q("#bars");
+  host.innerHTML = "";
+  OPTIES.forEach(o => {
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    row.innerHTML =
+      '<div class="bar-lab"><div class="nm"><span class="dot" style="background:'+o.kleur+'"></span>'+
+        o.nr+' &middot; '+o.onder+'</div>'+
+        '<div class="sm" data-sm="'+o.id+'"></div></div>'+
+      '<div class="track"><div class="span" data-span="'+o.id+'" style="background:'+o.kleur+'"></div>'+
+        '<div class="mid" data-mid="'+o.id+'"></div>'+
+        '<span class="cap lo" data-lo="'+o.id+'"></span><span class="cap hi" data-hi="'+o.id+'"></span></div>';
+    host.appendChild(row);
+  });
+}
+
+// ---- kop van de exploitatietabel
+function buildExplHead(){
+  q("#explHead").innerHTML = "<th>Post</th>" +
+    OPTIES.map(o => '<th class="'+o.id+'">'+o.nr+'</th>').join("");
+}
+
+// ---- punten
+function buildPunten(){
+  const host = q("#pts");
+  host.innerHTML = PUNTEN.map(p =>
+    '<div class="pt"><div class="cat">'+p[0]+'</div><h3>'+p[1]+'</h3><p>'+p[2]+'</p>'+
+    '<div class="act">'+p[3]+'</div></div>').join("");
+  q("#ptIntro").textContent = telwoord(PUNTEN.length, true) +
+    " punten die geen bedrag hebben maar de keuze wel bepalen. Elk punt heeft een concrete actie.";
+  q("#routeTel").textContent = telwoord(OPTIES.length, true);
+}
+
+/* ----------------------------------------------------------------- update */
+function update(){
+  const n = P("jaren");
+  q("#hdJaren").textContent = fmtIn(n);
+
+  // ledger cijfers
+  OPTIES.forEach(o => {
+    let sl = 0, sh = 0;
+    o.posten.forEach(p => {
+      const [al,ah] = cellRange(o.id,p.id,"a");
+      const [il,ih] = cellRange(o.id,p.id,"i");
+      const lo = al+il, hi = ah+ih;
+      sl += lo; sh += hi;
+      const el = document.querySelector('[data-rowtot="'+o.id+"."+p.id+'"]');
+      if (el) el.textContent = (lo===hi) ? eurS(lo) : eurS(lo)+" – "+eurS(hi);
+    });
+    const f = P("onv")/100;
+    const set = (sel,txt) => { const e = document.querySelector(sel); if (e) e.textContent = txt; };
+    const rg = (a,b) => (Math.round(a)===Math.round(b)) ? eurS(a) : eurS(a)+" – "+eurS(b);
+    set('[data-sub="'+o.id+'"]',  rg(sl,sh));
+    set('[data-onv="'+o.id+'"]',  rg(sl*f,sh*f));
+    set('[data-grand="'+o.id+'"]',rg(sl*(1+f),sh*(1+f)));
+    set('[data-opttot="'+o.id+'"]',rg(sl*(1+f),sh*(1+f)));
+  });
+
+  // balken
+  const tot = totaal15();
+  const jl  = jaarlast(tankhuur);
+  const max = Math.max(tot.o1[1], tot.o2[1], tot.o3[1]) * 1.06;
+  OPTIES.forEach(o => {
+    const [lo,hi] = tot[o.id];
+    const sp = document.querySelector('[data-span="'+o.id+'"]');
+    const md = document.querySelector('[data-mid="'+o.id+'"]');
+    sp.style.left  = (lo/max*100)+"%";
+    sp.style.width = ((hi-lo)/max*100)+"%";
+    md.style.left  = ((lo+hi)/2/max*100)+"%";
+    md.style.background = (hi-lo)/max < .01 ? o.kleur : "var(--ink)";
+    // Twee bijschriften naast elkaar vragen ruimte in pixels, niet in procenten:
+    // op een telefoon is 13% van de balk maar een paar tekens breed. Past het
+    // niet, dan verhuist de bandbreedte naar de regel onder de optienaam.
+    const cl = document.querySelector('[data-lo="'+o.id+'"]');
+    const ch = document.querySelector('[data-hi="'+o.id+'"]');
+    const trackPx = sp.parentElement.clientWidth || 1;
+    const gapPx = (hi-lo)/max * trackPx;
+    const past = gapPx >= 118;
+    cl.textContent = past ? eur(lo) : "";
+    cl.style.left = (lo/max*100)+"%";
+    ch.textContent = past ? eur(hi) : "";
+    ch.style.left = Math.min(hi/max*100, 100) + "%";
+    document.querySelector('[data-sm="'+o.id+'"]').textContent =
+      (past ? "" : eur(lo) + " – " + eur(hi) + " · ") + eur(jl[o.id]) + " per jaar";
+  });
+
+  // samenvattingstabel: vaste optievolgorde, met de rangorde als aparte kolom
+  const midden = o => { const [a,b] = tot[o.id]; return (a+b)/2; };
+  const rang = OPTIES.slice().sort((a,b) => midden(a) - midden(b)).map(o => o.id);
+  q("#sum").innerHTML = OPTIES.map(o => {
+    const [ia,ib] = optieTotaal(o.id);
+    const pos = rang.indexOf(o.id) + 1;
+    return '<tr class="'+(pos === 1 ? "best" : "")+'" style="--ac:'+o.kleur+'">'+
+      '<td><span class="nm"><span class="dot" style="background:'+o.kleur+';margin-top:0"></span>'+
+        o.nr+' <span class="txt">'+o.onder+'</span></span></td>'+
+      '<td>'+eur((ia+ib)/2)+'</td>'+
+      '<td>'+eur(jl[o.id])+'</td>'+
+      '<td class="tot">'+eur(midden(o))+'</td>'+
+      '<td><span class="rank">'+pos+'</span></td></tr>';
+  }).join("");
+
+  // zekerheid
+  let totC = 0, fixC = 0, spread = 0;
+  OPTIES.forEach(o => o.posten.forEach(p => ["a","i"].forEach(k => {
+    if (p[k][0] === p[k][1]) return;
+    totC++;
+    const [l,h,fixed] = cellRange(o.id,p.id,k);
+    if (fixed) fixC++; else spread += (h-l);
+  })));
+  const pct = totC ? fixC/totC : 1;
+  q("#certFill").style.width = (pct*100)+"%";
+  q("#certTxt").textContent = fixC + " van " + totC + " bedragen vastgelegd";
+  q("#spreadTxt").textContent = spread > 0
+    ? "nog " + eur(spread) + " bandbreedte"
+    : "alle bedragen bekend";
+
+  // uitspraak
+  const arr = OPTIES.map(o => ({ o, lo:tot[o.id][0], hi:tot[o.id][1], mid:(tot[o.id][0]+tot[o.id][1])/2 }));
+  arr.sort((a,b) => a.mid - b.mid);
+  const win = arr[0], next = arr[1];
+  const chip = q("#vChip"), call = q("#vCall"), why = q("#vWhy");
+  chip.style.color = win.o.kleur;
+  chip.textContent = win.o.nr;
+  if (win.hi < next.lo){
+    call.textContent = win.o.nr + " is het goedkoopst — " + win.o.onder;
+    why.textContent = "De bandbreedtes overlappen niet meer: zelfs in het ongunstigste geval is deze optie goedkoper dan de andere in hun gunstigste geval. Verschil met de eerstvolgende: " + eur(next.mid - win.mid) + ".";
+  } else {
+    call.textContent = win.o.nr + " ligt voor, maar de uitkomst staat niet vast";
+    why.textContent = "De bandbreedtes van " + win.o.nr + " en " + next.o.nr + " overlappen nog. Vul meer offertebedragen in — of controleer eerst de tankhuur hieronder, want die verschuift de uitkomst het sterkst.";
+  }
+
+  // exploitatie
+  const e  = jl.e;
+  const t  = P("tarief");
+  const pr = {};
+  OPTIES.forEach(o => pr[o.id] = PROFIEL[o.id](e));
+  const per = fn => OPTIES.map(o => "<td>" + fn(pr[o.id], o) + "</td>").join("");
+  const nul = v => v ? v : "—";
+
+  let html = "";
+  html += '<tr><td>Propaan — gas</td>'      + per(p => nul(p.gasdeel ? eur(e.pgas*p.gasdeel) : 0)) + '</tr>';
+  html += '<tr><td>Propaan — tankhuur</td>' + per(p => nul(p.propaan ? eur(tankhuur) : 0)) + '</tr>';
+  html += '<tr><td>Extra elektra (kWh/jr)</td>' + per(p => nul(p.kwh ? kwh(p.kwh) : 0)) + '</tr>';
+  html += '<tr><td>Elektrakosten</td>'      + per(p => nul(p.kwh ? eur(p.kwh*t) : 0)) + '</tr>';
+  html += '<tr class="rule"><td>Jaarlast</td>' +
+          OPTIES.map(o => '<td class="'+o.id+'">'+eur(jl[o.id])+'</td>').join("") + '</tr>';
+  html += '<tr><td>Investering (midden)</td>' + OPTIES.map(o => {
+            const [a,b] = optieTotaal(o.id); return "<td>"+eur((a+b)/2)+"</td>"; }).join("") + '</tr>';
+  html += '<tr><td>Exploitatie over '+fmtIn(n)+' jaar</td>' +
+          OPTIES.map(o => "<td>"+eur(jl[o.id]*n)+"</td>").join("") + '</tr>';
+  html += '<tr class="rule"><td>Totaal over '+fmtIn(n)+' jaar</td>' + OPTIES.map(o => {
+            const [a,b] = tot[o.id];
+            return '<td class="'+o.id+'">'+eur((a+b)/2)+'</td>'; }).join("") + '</tr>';
+  q("#expl").innerHTML = html;
+
+  // scenario's
+  q("#thVal").textContent = eur(tankhuur);
+  q("#scen").innerHTML = [0,150,250].map(t => {
+    const s = totaal15(t);
+    const best = OPTIES.map(o => ({o, m:(s[o.id][0]+s[o.id][1])/2})).sort((a,b)=>a.m-b.m)[0];
+    return '<div><div class="k">'+eur(t)+'/jr</div>'+
+           '<div class="v" style="color:'+best.o.kleur+'">'+best.o.nr+'</div>'+
+           '<div class="m">'+eur(best.m)+'</div></div>';
+  }).join("");
+}
+
+/* ------------------------------------------------------------------- boot */
+buildParams(); buildOpties(); buildBars(); buildExplHead(); buildPunten();
+
+const sl = q("#thSlider");
+sl.value = tankhuur;
+sl.addEventListener("input", () => {
+  tankhuur = parseFloat(sl.value);
+  store.params.tankhuur = tankhuur;
+  save(); update();
+});
+
+q("#reset").addEventListener("click", () => {
+  store = { cells:{}, params:{} };
+  tankhuur = 150;
+  save();
+  buildParams(); buildOpties();
+  sl.value = 150;
+  update();
+});
+
+update();
+
+// De bijschriften hangen af van de beschikbare pixels, dus bij draaien of
+// vergroten opnieuw bepalen wat er past.
+let rt;
+window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(update, 150); });
+})();
+</script>
